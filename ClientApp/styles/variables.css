@@ -1,0 +1,27 @@
+:root {
+	/* Родительские цвета */
+
+	--base-strong: #2d3138;
+	--base-weak: #fff;
+
+	--faint-strong: #8994a6;
+	--faint-strong-down: #a5adbb;
+
+	--faint-weak: #F6F8FB;
+	--faint-weak-up: #ECEEF5;
+
+	--accent-strong: #0070FF;
+	--accent-weak: #EBF4FF;
+
+	--complement-strong: #6668e8;
+	--complement-weak: #e0daff;
+
+	--critic-strong: #F74545;
+	--critic-weak: #FDEDED;
+
+	--warning-strong: #F8AE4F;
+	--warning-weak: #FCEBCF;
+
+	--success-strong: #27AE60;
+	--success-weak: #DEF8E9;
+}

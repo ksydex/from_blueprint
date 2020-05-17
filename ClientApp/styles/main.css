@@ -1,0 +1,10 @@
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transition: 0.2s all ease;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	color: var(--base-strong);
+}
