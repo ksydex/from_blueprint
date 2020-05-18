@@ -1,0 +1,19 @@
+@mixin for-size($range) {
+  $mobile-down: 700px;
+  $desktop-up: 1200px;
+  $desktop-big: 1440px;
+
+  @if $range == mobile {
+    @media (max-width: $mobile-down) {
+      @content;
+    }
+  } @else if $range == desktop {
+    @media (min-width: $desktop-up) {
+      @content;
+    }
+  } @else if $range == desktop-big {
+    @media (min-width: $desktop-big) {
+      @content;
+    }
+  }
+}

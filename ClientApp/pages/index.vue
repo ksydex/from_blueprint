@@ -12,7 +12,8 @@
             type="header">
             Используем новые технологии при строительстве
           </VText>
-          <VText type="p"
+          <VText class="__desc"
+                 type="p"
                  color="var(--color-base-strong-down)">
             Передовые технологии мировых лидеров по производству строительных материалов
           </VText>
@@ -23,8 +24,10 @@
             <span
               style="font-size: 21px; line-height: 0.2"
             >&rarr;</span></VButton>
-          <VText type="caption"
-                 color="var(--color-faint-strong-down)">
+          <VText
+            class="__caption"
+            type="caption"
+            color="var(--color-faint-strong-down)">
             Условия сотрудничества и многое другое
           </VText>
         </div>
@@ -118,16 +121,27 @@
           </div>
         </div>
       </div>
+    </div>
 
+    <div class="part-4 part">
+      <div class="__bg"></div>
+      <VText type="h2"
+             align="center"
+             weight="400">
+        Наши дома по скидке
+      </VText>
+      <div class="__content">
+        <GridOfCardsHouse/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import EffectGrid from '../components/EffectGrid'
+  import { CardHouse, EffectGrid, GridOfCardsHouse } from '../components/'
 
   export default {
-    components: { EffectGrid },
+    components: { GridOfCardsHouse, EffectGrid, CardHouse },
     data() {
       return {
         stages: [
@@ -153,32 +167,42 @@
 </script>
 
 <style lang="scss">
-
   .part {
     margin-bottom: var(--indent-5) !important;
+
+    @include for-size(mobile) {
+      height: fit-content;
+    }
+  }
+
+  .__bg {
+    background: var(--color-faint-weak);
+    position: absolute;
+    top: 0;
+    left: -50vw;
+    right: -50vw;
+    z-index: -100;
+    height: 100%;
+    bottom: 0;
+    overflow: hidden;
   }
 
   .part-1 {
     position: relative;
     display: grid;
     column-gap: var(--indent-2);
-    grid-template-columns: 50% 50%;
-    height: 50vh;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(50vh, max-content));
     background: var(--color-faint-weak);
     margin: 0 calc(-1 * var(--indent-view-x));
 
-    .__bg {
-      background: var(--color-faint-weak);
-      position: absolute;
-      top: 0;
-      right: -10000px;
-      left: -10000px;
-      z-index: -100;
-      bottom: 0;
+
+    @include for-size(desktop) {
+      height: 50vh;
     }
 
     .__left {
-      margin-left: var(--indent-view-x);
+      padding: 0 var(--indent-view-x);
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -192,9 +216,17 @@
         }
       }
 
+      .__desc {
+        margin-bottom: var(--indent-2);
+      }
+
       .__button {
         margin-bottom: var(--indent-view-x);
         box-shadow: 0 10px 30px -10px var(--color-accent-strong-down);
+      }
+
+      .__caption {
+        margin-bottom: var(--indent-3);
       }
     }
 
@@ -219,11 +251,27 @@
       height: 50vh;
       position: relative;
 
+      @include for-size(mobile) {
+        height: fit-content;
+        flex-direction: column;
+      }
+
 
       .__left {
         position: relative;
         overflow: hidden;
         width: 40%;
+
+        @include for-size(mobile) {
+          width: 100%;
+          height: 30vh;
+
+          .__image {
+            left: 0 !important;
+            right: 0;
+            top: -30%;
+          }
+        }
 
 
         .__image {
@@ -238,6 +286,13 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        @include for-size(mobile) {
+          width: 100%;
+          max-width: 100%;
+          margin-top: var(--indent-3);
+        }
+
 
         .__inner {
           svg {
@@ -347,4 +402,13 @@
     }
   }
 
+  .part-4 {
+    position: relative;
+    padding: var(--indent-4) 0;
+
+    .__content {
+      margin-top: var(--indent-3);
+
+    }
+  }
 </style>

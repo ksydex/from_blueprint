@@ -6,20 +6,29 @@
       <nuxt/>
     </main>
 
+    <VFooter/>
   </div>
 </template>
 
 <script>
   import { NavBar } from '../components/'
+  import VFooter from '../components/VFooter'
 
   export default {
     components: {
+      VFooter,
       NavBar
     }
   }
 </script>
 
 <style scoped>
+  .main {
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
   main {
     max-width: var(--max-width);
     margin: 0 auto;

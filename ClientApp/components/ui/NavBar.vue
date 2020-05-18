@@ -1,30 +1,7 @@
 <template>
   <header class="header">
     <nav class="__nav">
-      <VLink to="/">
-        <div class="__logo">
-          <VText
-            class="__text"
-            type="p">
-            FROM
-          </VText>
-          <div class="__svg">
-            <svg
-              viewBox="0 0 40 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 17.5L9.5 21h29l-7-20H2l4 11 7.5-7.5 4.75 4.75m0 0V6.5H21V12m-2.75-2.75L21 12m0 0l4 4m-13.5-3v4h4v-4h-4z"
-                    stroke="#000"
-                    stroke-width="1.5"/>
-            </svg>
-          </div>
-          <VText
-            class="__text"
-            type="p">BLUEPRINT
-          </VText>
-        </div>
-      </VLink>
-
+      <Logo/>
       <div>
         <ul class="__links">
           <li class="__link"
@@ -45,7 +22,12 @@
 </template>
 
 <script>
+  import Logo from '../utils/Logo'
+
   export default {
+    components: {
+      Logo
+    },
     computed: {
       links() {
         return this.$store.getters['nav/GET_LINKS']
@@ -79,29 +61,6 @@
       padding: 0 var(--indent-2);
       height: 100%;
       justify-content: space-between;
-
-      .__logo {
-        display: flex;
-        height: 100%;
-        align-items: center;
-        text-decoration: none;
-
-        .__text p {
-          font-weight: 600;
-        }
-
-        .__svg svg path, .__text {
-          color: var(--color-accent-strong) !important;
-          stroke: var(--color-accent-strong);
-          font-weight: 500;
-        }
-
-        .__svg svg {
-          height: 25px;
-          margin: 0 var(--indent-1);
-        }
-      }
-
 
       .__links {
         display: flex;

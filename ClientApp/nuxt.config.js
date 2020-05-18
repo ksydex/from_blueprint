@@ -27,7 +27,8 @@ export default {
   css: [
     '~/styles/reset.css',
     '~/styles/variables.css',
-    '~/styles/main.css'
+    '~/styles/main.css',
+    { src: '~/styles/_breakpoints.scss', lang: 'scss' }
   ],
   /*
   ** Plugins to load before mounting the App
@@ -47,8 +48,12 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: ['~/styles/*.scss']
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

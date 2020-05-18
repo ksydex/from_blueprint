@@ -1,7 +1,7 @@
 <template>
   <button @click="handleClick"
           :style="{
-    //background: color
+    padding: indents[size]
   }"
           class="button">
     <VText :color="textColor"
@@ -26,6 +26,19 @@
       color: {
         type: String,
         default: 'var(--color-accent-strong)'
+      },
+      size: {
+        type: String,
+        default: 'default'
+      }
+    },
+    data() {
+      return {
+        indents: {
+          small: 'var(--indent-1) var(--indent-2)',
+          default: 'var(--indent-2) var(--indent-3)',
+          big: 'var(--indent 3) var(--indent-4)'
+        }
       }
     },
     methods: {
@@ -39,7 +52,6 @@
 
 <style scoped>
   .button {
-    padding: var(--indent-2) var(--indent-3);
     letter-spacing: 0.7px;
     background: var(--color-accent-strong);
     border: solid var(--border-width);
