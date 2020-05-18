@@ -61,6 +61,8 @@
 <style scoped
        lang="scss">
   .header {
+    z-index: 100;
+    box-shadow: 0 0 40px -22px var(--color-base-strong-down);
     position: fixed;
     top: 0;
     left: 0;

@@ -3,3 +3,5 @@ export { default as VLink } from './VLink'
 export { default as VButton } from './VButton'
 
 export { default as NavBar } from './ui/NavBar'
+
+export { default as EffectGrid } from './EffectGrid'

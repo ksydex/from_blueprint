@@ -2,10 +2,18 @@
   export default {
     props: {
       type: String,
-      color: String
+      color: String,
+      weight: String,
+      align: String,
+      transform: String
     },
     render(h) {
-      const type = this.type
+      let type
+      if (!this.type) {
+        console.warn('Type wasn\'t set in <Text /> component; Setting "p" type.')
+        type = 'p'
+      } else type = this.type
+
 
       let newType = types.filter(t => t.name.includes(type.toLowerCase()))[0] || null
       if (!newType) {
@@ -13,12 +21,18 @@
         newType = types[4]
       }
 
+      let style = ''
+      if (this.color) style += 'color: ' + this.color + ';'
+      if (this.weight) style += 'font-weight: ' + this.weight + ';'
+      if (this.align) style += 'text-align: ' + this.align + ';'
+      if (this.transform) style += 'text-transform: ' + this.transform + ';'
+
 
       return h('div', {}, [h(newType.tag, {
         attrs: {
           ...this.$attrs,
           class: newType.class,
-          style: this.color && 'color: ' + this.color
+          style
         }
       }, this.$slots.default)])
     }
