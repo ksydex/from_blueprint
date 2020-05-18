@@ -1,27 +1,33 @@
 :root {
-	/* Родительские цвета */
+	/* Colors */
+	--color-base-strong: #2d3138;
+	--color-base-weak: #fff;
 
-	--base-strong: #2d3138;
-	--base-weak: #fff;
+	--color-faint-strong: #8994a6;
+	--color-faint-strong-down: #a5adbb;
 
-	--faint-strong: #8994a6;
-	--faint-strong-down: #a5adbb;
+	--color-faint-weak: #F6F8FB;
+	--color-faint-weak-up: #ECEEF5;
 
-	--faint-weak: #F6F8FB;
-	--faint-weak-up: #ECEEF5;
+	--color-accent-strong: #0070FF;
+	--color-accent-weak: #EBF4FF;
 
-	--accent-strong: #0070FF;
-	--accent-weak: #EBF4FF;
+	--color-complement-strong: #6668e8;
+	--color-complement-weak: #e0daff;
 
-	--complement-strong: #6668e8;
-	--complement-weak: #e0daff;
+	--color-critic-strong: #F74545;
+	--color-critic-weak: #FDEDED;
 
-	--critic-strong: #F74545;
-	--critic-weak: #FDEDED;
+	--color-warning-strong: #F8AE4F;
+	--color-warning-weak: #FCEBCF;
 
-	--warning-strong: #F8AE4F;
-	--warning-weak: #FCEBCF;
+	--color-success-strong: #27AE60;
+	--color-success-weak: #DEF8E9;
 
-	--success-strong: #27AE60;
-	--success-weak: #DEF8E9;
+	/* Utils */
+	--max-width: 1140px;
+
+	--border-width: 2px;
+	--border-radius-base: 0px;
+
 }
