@@ -1,73 +1,81 @@
 <template>
   <div class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        ClientApp
-      </h1>
-      <h2 class="subtitle">
-        My striking Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <div class="part-1">
+      <div class="__left">
+        <div>
+          <VText
+            class="__title"
+            color="var(--color-accent-strong)"
+            type="header">
+            Используем новые технологии при строительстве
+          </VText>
+          <VText type="p"
+                 color="var(--color-base-strong-down)">
+            Передовые технологии мировых лидеров по производсту строительных материалов
+          </VText>
+        </div>
+
+        <div>
+          <VButton class="__button">Подробнее</VButton>
+          <VText type="caption"
+                 color="var(--color-faint-strong-down)">
+            Условия сотрудничества и многое другое
+          </VText>
+        </div>
+      </div>
+      <div class="__right">
+        <img alt="image"
+             src="/images/home1.jpg">
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import Logo from '~/components/Logo.vue'
-
-
-  export default {
-    components: {
-      Logo
-    }
-  }
+  export default {}
 </script>
 
-<style>
-  .container {
-    margin: 0 auto;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+<style lang="scss">
+
+  .part-1 {
+    display: grid;
+    column-gap: var(--indent-2);
+    grid-template-columns: 50% 50%;
+    height: 50vh;
+    background: var(--color-faint-weak);
+    margin: 0 calc(-1 * var(--indent-view-x));
+
+    .__left {
+      margin-left: var(--indent-view-x);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .__title {
+        margin-bottom: var(--indent-view-x);
+
+        h1 {
+          font-weight: 400;
+          line-height: 0.9;
+        }
+      }
+
+      .__button {
+        margin-bottom: var(--indent-view-x);
+      }
+    }
+
+    .__right {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        top: 0;
+        height: 50vh;
+        left: -30%;
+      }
+    }
   }
 
-  .title {
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    display: block;
-    font-weight: 300;
-    font-size: 100px;
-    color: #35495e;
-    letter-spacing: 1px;
-  }
-
-  .subtitle {
-    font-weight: 300;
-    font-size: 42px;
-    color: #526488;
-    word-spacing: 5px;
-    padding-bottom: 15px;
-  }
-
-  .links {
-    padding-top: 15px;
-  }
 </style>
