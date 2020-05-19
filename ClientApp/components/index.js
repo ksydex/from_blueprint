@@ -1,10 +1,12 @@
-export { default as VText } from './VText'
-export { default as VLink } from './VLink'
-export { default as VButton } from './VButton'
-export { default as VFooter } from './VFooter'
+export { default as VText } from './base/VText'
+export { default as VLink } from './base/VLink'
+export { default as VButton } from './base/VButton'
+export { default as VFooter } from './base/VFooter'
+export { default as VContainer } from './base/VContainer'
+export { default as VInput } from './base/VInput'
 
 export { default as CardHouse } from './ui/CardHouse'
-export { default as NavBar } from './ui/NavBar'
+export { default as VNav } from './base/VNav/'
 export { default as GridOfCardsHouse } from './ui/GridOfCardsHouse'
 
 export { default as EffectGrid } from './EffectGrid'

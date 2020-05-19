@@ -201,6 +201,10 @@
       height: 50vh;
     }
 
+    @include for-size(mobile) {
+      padding-top: var(--indent-2);
+    }
+
     .__left {
       padding: 0 var(--indent-view-x);
       display: flex;

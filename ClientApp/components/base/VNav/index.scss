@@ -1,0 +1,97 @@
+.header {
+  z-index: 100;
+  box-shadow: 0 0 40px -22px var(--color-base-strong-down);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  border-bottom: var(--border-width) solid var(--color-faint-weak);
+  background: var(--color-base-weak);
+
+  @include for-size(mobile) {
+    height: fit-content;
+  }
+
+  .__nav {
+    margin: 0 auto;
+    max-width: var(--max-width);
+    //display: grid;
+    //grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+    //grid-template-rows: repeat(auto-fit, minmax(10px, auto));
+    align-items: center;
+    padding: 0 var(--indent-2);
+    height: 100%;
+    justify-content: space-between;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include for-size(mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+      .__logo {
+        padding: var(--indent-1) 0;
+      }
+    }
+
+    .__burger {
+      position: absolute;
+      display: none;
+      top: calc(var(--navbar-height) / 3);
+      bottom: 0;
+      right: var(--indent-3);
+
+      @include for-size(mobile) {
+        display: block;
+      }
+    }
+
+    .__links {
+      display: flex;
+
+      @include for-size(mobile) {
+        flex-direction: column;
+        display: none;
+        margin: var(--indent-2) 0;
+      }
+
+      .__link {
+        margin-right: var(--indent-2);
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+
+        @include for-size(mobile) {
+          padding: var(--indent-1) 0;
+        }
+
+        .__text {
+          font-weight: 500 !important;
+          color: var(--color-base-strong);
+
+          &:hover, &:active, &:focus {
+            color: var(--color-accent-strong)
+          }
+        }
+
+        .__text-current {
+          color: var(--color-accent-strong);
+        }
+      }
+
+      .__cart {
+        display: flex;
+
+        .__size {
+          margin-left: var(--indent-1);
+          padding: 0 var(--indent-1);
+          background: var(--color-base-weak);
+          color: var(--color-accent-strong);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+

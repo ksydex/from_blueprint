@@ -96,6 +96,7 @@
   .text-paragraph {
     font-weight: 500;
     font-size: 16px;
+    line-height: 1.2;
   }
 
   .text-caption {

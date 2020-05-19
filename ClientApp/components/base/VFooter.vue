@@ -17,7 +17,7 @@
   }
 </style>
 <script>
-  import Logo from './utils/Logo'
+  import Logo from '../utils/Logo'
 
   export default {
     components: { Logo }

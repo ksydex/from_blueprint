@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="indent"></div>
-    <NavBar/>
+    <VNav/>
     <main>
       <nuxt/>
     </main>
@@ -11,13 +11,13 @@
 </template>
 
 <script>
-  import { NavBar } from '../components/'
-  import VFooter from '../components/VFooter'
+  import { VNav } from '../components/'
+  import VFooter from '../components/base/VFooter'
 
   export default {
     components: {
       VFooter,
-      NavBar
+      VNav
     }
   }
 </script>
