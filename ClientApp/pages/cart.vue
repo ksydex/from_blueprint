@@ -102,7 +102,8 @@
                 type="caption">Размер скидки: ${{total * sale/100}}
               </VText>
               <VText class="__price"
-                     type="title"
+                     type="subtitle"
+                     weight="600"
                      color="var(--color-accent-strong)">Итого: ${{total * (1 - sale/100)}}
               </VText>
             </div>
@@ -118,7 +119,8 @@
   export default {
     data() {
       return {
-        sale: 10
+        sale: 10,
+        housesData: null
       }
     },
     computed: {
@@ -136,7 +138,9 @@
         ]
       }
     },
-
+    asyncData(ctx) {
+      console.log(ctx)
+    }
   }
 </script>
 

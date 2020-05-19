@@ -38,11 +38,12 @@
               <VButton size="small">
                 <div class="__cart">
                   Корзина
-                  <div class="__size">{{cartSize}}</div>
+                  <div v-if="ids.length > 0"
+                       class="__size">{{ids.length}}
+                  </div>
                 </div>
               </VButton>
             </VLink>
-
           </li>
         </ul>
       </div>
@@ -71,8 +72,8 @@
         const currentPath = this.$route.path
         return this.links.filter(l => l.to === currentPath)[0] || null
       },
-      cartSize() {
-        return this.$store.getters['cart/GET_IDS'].length
+      ids() {
+        return this.$store.getters['cart/GET_IDS']
       }
     },
     mounted() {

@@ -4,29 +4,44 @@
     background
   }">
     <div :style="{
-      'background-image': `url('/images/home1.jpg')`
+      'background-image': `url('${house.image}')`
     }"
          class="__image">
     </div>
     <div class="__info">
       <VText class="__name"
-             type="p">Финансовый офис, Румыния
+             type="p">{{house.name}}, <span style="color: var(--color-base-strong-down)">{{house.country}}</span>
       </VText>
       <VText
         class="__meta"
         type="caption"
         color="var(--color-base-strong-down)">
-        5000 куб.м, 3 этажа
+        {{info.description}}
       </VText>
       <div class="__price">
         <VText type="subtitle"
                color="var(--color-accent-strong)">
-          $15.000 USD
+          {{info.price}}
         </VText>
       </div>
-
-      <VButton size="small"
+      <VButton @click="addToCart"
+               v-if="!isInCart"
+               size="small"
                class="__button">В корзину
+      </VButton>
+      <VButton @click="removeFromCart"
+               v-else-if="isInCart"
+               text-color="var(--color-accent-strong)"
+               class="__button-in-cart"
+               size="small">
+        <svg width="18"
+             height="14"
+             fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 11.2L1.8 7 .4 8.4 6 14 18 2 16.6.6 6 11.2z"
+          />
+        </svg>
+        В корзине
       </VButton>
     </div>
   </div>
@@ -38,6 +53,37 @@
       background: {
         type: String,
         default: 'var(--color-base-weak)'
+      },
+      house: {
+        type: Object,
+        default: () => ({
+          id: 1,
+          name: 'Офисное здание',
+          country: 'Румыния',
+          price: 15000,
+          area: 300,
+          floors: 4,
+          image: '/images/home2.jpg'
+        })
+      }
+    },
+    methods: {
+      addToCart() {
+        this.$store.dispatch('cart/addId', this.house.id)
+      },
+      removeFromCart() {
+        this.$store.dispatch('cart/removeId', this.house.id)
+      }
+    },
+    computed: {
+      isInCart() {
+        return this.$store.getters['cart/GET_IDS'].includes(this.house.id)
+      },
+      info() {
+        return {
+          description: `${this.house.area} кв.м, ${this.house.floors} этажа(-ей)`,
+          price: `$${this.house.price} USD`
+        }
       }
     }
   }
@@ -68,6 +114,28 @@
 
       .__price {
         margin-bottom: var(--indent-2);
+      }
+
+      .__button-in-cart {
+        background: var(--color-faint-weak);
+        border-color: var(--color-faint-weak);
+
+        div p {
+          color: var(--color-accent-strong) !important;
+        }
+
+        &:hover {
+          background: var(--color-faint-weak-up);
+          border-color: var(--color-faint-weak-up);
+        }
+
+        svg {
+          margin-right: var(--indent-1);
+
+          path {
+            fill: var(--color-accent-strong);
+          }
+        }
       }
     }
   }

@@ -49,7 +49,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    'nuxt-client-init-module'
   ],
   styleResources: {
     scss: ['~/styles/*.scss']
