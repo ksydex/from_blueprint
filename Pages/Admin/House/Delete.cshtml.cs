@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using from_blueprint.Database;
 using from_blueprint.Models;
 
-namespace from_blueprint.Pages_Images
+namespace from_blueprint.Pages_Admin_House
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace from_blueprint.Pages_Images
         }
 
         [BindProperty]
-        public Image Image { get; set; }
+        public House House { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace from_blueprint.Pages_Images
                 return NotFound();
             }
 
-            Image = await _context.Images.FirstOrDefaultAsync(m => m.Id == id);
+            House = await _context.Houses.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Image == null)
+            if (House == null)
             {
                 return NotFound();
             }
@@ -45,11 +45,11 @@ namespace from_blueprint.Pages_Images
                 return NotFound();
             }
 
-            Image = await _context.Images.FindAsync(id);
+            House = await _context.Houses.FindAsync(id);
 
-            if (Image != null)
+            if (House != null)
             {
-                _context.Images.Remove(Image);
+                _context.Houses.Remove(House);
                 await _context.SaveChangesAsync();
             }
 

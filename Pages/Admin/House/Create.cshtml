@@ -1,0 +1,54 @@
+@page
+@model from_blueprint.Pages_Admin_House.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>House</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="House.Area" class="control-label"></label>
+                <input asp-for="House.Area" class="form-control"/>
+                <span asp-validation-for="House.Area" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="House.Floors" class="control-label"></label>
+                <input asp-for="House.Floors" class="form-control"/>
+                <span asp-validation-for="House.Floors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="House.Price" class="control-label"></label>
+                <input asp-for="House.Price" class="form-control"/>
+                <span asp-validation-for="House.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="House.Description" class="control-label"></label>
+                <input asp-for="House.Description" class="form-control"/>
+                <span asp-validation-for="House.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="House.Image" class="control-label"></label>
+                <input type="file" name="imageFile" required /><br>
+            </div>
+            @* <div class="form-group"> *@
+            @*     <label asp-for="House.CreatedDate" class="control-label"></label> *@
+            @*     <input asp-for="House.CreatedDate" class="form-control" /> *@
+            @*     <span asp-validation-for="House.CreatedDate" class="text-danger"></span> *@
+            @* </div> *@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>

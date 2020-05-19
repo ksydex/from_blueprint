@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using from_blueprint.Database;
 using from_blueprint.Models;
 
-namespace from_blueprint.Pages_Images
+namespace from_blueprint.Pages_Admin_House
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace from_blueprint.Pages_Images
             _context = context;
         }
 
-        public IList<Image> Image { get;set; }
+        public IList<House> House { get;set; }
 
         public async Task OnGetAsync()
         {
-            Image = await _context.Images.ToListAsync();
+            House = await _context.Houses.ToListAsync();
         }
     }
 }

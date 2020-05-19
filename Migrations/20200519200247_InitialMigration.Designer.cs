@@ -10,8 +10,8 @@ using from_blueprint.Database;
 namespace from_blueprint.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200519192129_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200519200247_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
