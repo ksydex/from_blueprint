@@ -37,7 +37,7 @@ namespace from_blueprint.Controllers
       }
     }
 
-    public ActionResult<IEnumerable<object>> Filter(int limit = 5, string orderBy = "Price", bool descending = true)
+    public ActionResult<IEnumerable<object>> Filter(int limit = 4, string orderBy = "Price", bool descending = true)
     {
       if (descending == false)
       {

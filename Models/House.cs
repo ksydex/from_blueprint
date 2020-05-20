@@ -15,7 +15,7 @@ namespace from_blueprint.Models
       
       return new
       {
-        Id, Name, Description, Area, Floors, Image = Image?.Path, Price, IsNew = CreatedDate > dateBeforeNew
+        Id, Name, Description, Area, Floors, Image = Image?.Path, Price, IsNew = CreatedDate > dateBeforeNew, IsCheap = Price < 50000
       };
     }
   }

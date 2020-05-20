@@ -11,5 +11,6 @@ export { default as GridOfCardsHouse } from './ui/GridOfCardsHouse'
 export { default as ButtonAddToCart } from './ui/ButtonAddToCart'
 
 export { default as EffectGrid } from './EffectGrid'
+export { default as ModuleHouse } from './containers/ModuleHouse'
 
 export { default as Logo } from './utils/Logo'

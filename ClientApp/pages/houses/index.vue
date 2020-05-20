@@ -1,9 +1,7 @@
 <template>
-  <VContainer :default-header="false">
+  <VContainer>
     <template v-slot:title>
-      <VText type="h1">
-        Наши предложения
-      </VText>
+      Наши предложения
     </template>
     <VText style="margin-top: var(--indent-2)"
            type="p">

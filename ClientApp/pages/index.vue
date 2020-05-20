@@ -37,49 +37,11 @@
              src="/images/home1.jpg">
       </div>
     </div>
-    <div class="part part-2">
 
-      <VText type="h2"
-             align="center"
-             weight="400">
-        Постройка дома не должна быть сложной!
-      </VText>
-      <div class="__content">
-        <EffectGrid top="-40px"
-                    left="10px"
-                    class="__effect"></EffectGrid>
-        <div class="__left">
-          <img class="__image"
-               alt="image2"
-               src="/images/home2.jpg">
-        </div>
-        <div class="__right">
-          <div class="__inner">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 298.67 298.67">
-              <path d="M0 170.67h64L21.33 256h64L128 170.67v-128H0zM170.67 42.67v128h64L192 256h64l42.67-85.33v-128z"
-              />
-            </svg>
-            <VText
-              class="__title"
-              type="title"
-              weight="400">Добро пожаловать в наш самый иновационный дом.
-            </VText>
-            <VText class="__p"
-                   type="p">Лучший дом в мире оснащен системой умного отополения, слежения и климата. Его можно
-              построить где угодно, даже в возудхе! Всё зависит от вашей фантазии. Цена стартует от всего лишь
-              $7.000.000 - успейте забрать!
-            </VText>
-            <div class="__more">
-              <VLink
-                to="/projects">
-                <VText type="p">Узнать подробнее</VText>
-              </VLink>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    <ModuleHouse></ModuleHouse>
+
+
     <div class="part part-3">
       <div class="__content">
         <VText
@@ -103,7 +65,11 @@
             вовремя. Нет и не может быть никаких задержек!
           </VText>
         </div>
-        <div class="__stages">
+        <div class="__stages"
+             style="position: relative">
+          <EffectGrid bottom="-60px"
+                      left="-60px"
+                      class="__effect"></EffectGrid>
           <div class="__stage"
                v-for="(stage, idx) in stages"
                :key="stage.id">
@@ -123,8 +89,12 @@
       </div>
     </div>
 
-    <div class="part-4 part">
+    <div class="part-4 part"
+         style="position: relative">
       <div class="__bg"></div>
+      <EffectGrid bottom="-30px"
+                  right="-40px"
+                  class="__effect"></EffectGrid>
       <VText type="h2"
              align="center"
              weight="400">
@@ -139,9 +109,10 @@
 
 <script>
   import { CardHouse, EffectGrid, GridOfCardsHouse } from '../components/'
+  import ModuleHouse from '../components/containers/ModuleHouse'
 
   export default {
-    components: { GridOfCardsHouse, EffectGrid, CardHouse },
+    components: { ModuleHouse, GridOfCardsHouse, EffectGrid, CardHouse },
     data() {
       return {
         housesOnSale: [],
@@ -165,7 +136,7 @@
       }
     },
     async asyncData(ctx) {
-      const houses = await ctx.$api.House.getByIds([2, 4, 3])
+      const houses = await ctx.$api.House.getByIds([2, 4, 7])
       return {
         housesOnSale: houses
       }
@@ -198,7 +169,7 @@
     position: relative;
     display: grid;
     column-gap: var(--indent-2);
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 50fr 50fr;
     grid-template-rows: repeat(auto-fit, minmax(50vh, max-content));
     background: var(--color-faint-weak);
     margin: 0 calc(-1 * var(--indent-view-x));
@@ -254,94 +225,6 @@
     }
   }
 
-  .part-2 {
-    .__content {
-      display: flex;
-      justify-content: space-around;
-      margin-top: var(--indent-4);
-      height: 50vh;
-      position: relative;
-
-      @include for-size(mobile) {
-        height: fit-content;
-        flex-direction: column;
-      }
-
-
-      .__left {
-        position: relative;
-        overflow: hidden;
-        width: 40%;
-
-        @include for-size(mobile) {
-          width: 100%;
-          height: 30vh;
-
-          .__image {
-            left: 0 !important;
-            right: 0;
-            top: -30%;
-          }
-        }
-
-
-        .__image {
-          position: absolute;
-          left: -50%;
-          height: 50vh;
-        }
-      }
-
-      .__right {
-        max-width: 40%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        @include for-size(mobile) {
-          width: 100%;
-          max-width: 100%;
-          margin-top: var(--indent-3);
-        }
-
-
-        .__inner {
-          svg {
-            margin-bottom: var(--indent-3);
-            height: 30px;
-            fill: var(--color-accent-strong);
-          }
-
-          .__title {
-            margin-bottom: var(--indent-2);
-          }
-
-          .__p {
-            color: var(--color-base-strong-down);
-            line-height: 1.4;
-            margin-bottom: var(--indent-3);
-          }
-
-          .__more {
-            text-transform: uppercase;
-            width: fit-content;
-            margin-left: calc(-1 * var(--indent-2));
-            padding: var(--indent-2);
-            position: relative;
-
-            p {
-              color: var(--color-accent-strong);
-            }
-
-            &:hover {
-              background: var(--color-accent-weak);
-              cursor: pointer;
-            }
-          }
-        }
-      }
-    }
-  }
 
   .part-3 {
     display: flex;
@@ -378,6 +261,7 @@
           overflow: hidden;
           position: relative;
           padding-top: 75px;
+          border-radius: var(--border-radius-base);
 
           &:hover {
             background: var(--color-accent-strong);

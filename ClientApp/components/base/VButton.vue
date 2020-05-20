@@ -2,7 +2,8 @@
   <button @click="handleClick"
           :style="{
     padding: indents[size],
-    background: color ? color : null,
+    '--background': color,
+    '--background-hover': hoverColor,
     width: w100 ? '100%' : null
   }"
           class="button">
@@ -30,6 +31,10 @@
         type: String,
         default: 'var(--color-accent-strong)'
       },
+      hoverColor: {
+        type: String,
+        default: 'var(--color-accent-strong-down)'
+      },
       size: {
         type: String,
         default: 'default'
@@ -56,14 +61,14 @@
 <style scoped>
   .button {
     letter-spacing: 0.7px;
-    background: var(--color-accent-strong);
+    background: var(--background);
     border: solid var(--border-width);
     border-color: var(--color-accent-strong);
     border-radius: var(--border-radius-base);
   }
 
   .button:hover {
-    background: var(--color-accent-strong-down);
+    background: var(--background-hover);
     border-color: var(--color-accent-strong-down);
   }
 

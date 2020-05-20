@@ -1,7 +1,7 @@
 <template>
-  <VContainer center-header>
+  <VContainer>
     <template v-slot:title>
-      <span style="color: var(--color-accent-strong)">FROM BLUEPRINT</span> - Команда лучших
+      О нас
     </template>
 
     <div class="__info">
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="__agents">
-      <VText type="header"
+      <VText type="subheader"
              align="center"
              weight="400">Наши лучшие агенты
       </VText>
@@ -120,14 +120,15 @@
     padding: var(--indent-3) 0;
 
     .__info {
-      margin: var(--indent-4) 0;
+      margin: var(--indent-3) 0;
+      margin-bottom: var(--indent-4);
       display: grid;
-      grid-template-columns: 50% 50%;
+      grid-template-columns: 50fr 50fr;
       grid-gap: var(--indent-3);
 
       @include for-size(mobile) {
         grid-template-rows: repeat(auto-fit, max-content);
-        grid-template-columns: 100%;
+        grid-template-columns: auto;
       }
 
       .__p1 {

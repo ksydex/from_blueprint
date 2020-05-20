@@ -7,7 +7,8 @@
     <div class="__title"
          v-else>
       <VText :align="centerHeader ? 'center' : ''"
-             type="h1">
+             type="h1"
+             weight="400">
         <slot name="title"></slot>
       </VText>
     </div>

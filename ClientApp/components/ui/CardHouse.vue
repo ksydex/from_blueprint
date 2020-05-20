@@ -4,6 +4,17 @@
     :style="{
     background
   }">
+    <div class="__chips">
+      <div v-if="house.isNew"
+           class="__chip __new">
+        Новинка
+      </div>
+      <div v-if="house.isCheap"
+           class="__chip __cheap">
+        Выгодно
+      </div>
+    </div>
+
     <div @click="pushToRoute"
          :style="{
       'background-image': `url('${house.image}')`
@@ -77,7 +88,31 @@
 <style lang="scss"
        scoped>
   .card {
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
     cursor: pointer;
+    position: relative;
+
+    .__chips {
+      position: absolute;
+      z-index: 2;
+      top: var(--indent-2);
+      left: var(--indent-2);
+
+      .__chip {
+        padding: var(--indent-1) var(--indent-2);
+        color: var(--color-base-weak);
+        margin-bottom: var(--indent-1);
+      }
+
+      .__new {
+        background: var(--color-error-strong);
+      }
+
+      .__cheap {
+        background: var(--color-success-strong);
+      }
+    }
 
     .__image {
       position: relative;
@@ -88,12 +123,15 @@
       background-position: center center;
     }
 
-    &:hover {
-      box-shadow: 0 10px 30px -25px var(--color-base-strong-down);
-    }
 
     .__info {
+      border: solid var(--border-width) var(--color-faint-weak);
+      border-radius: var(--border-radius-base);
       padding: var(--indent-2);
+      border-top: none;
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+      height: 100%;
 
       .__meta, .__name, .__price {
         margin-bottom: var(--indent-1);
@@ -101,6 +139,14 @@
 
       .__price {
         margin-bottom: var(--indent-2);
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 10px 30px -25px var(--color-accent-strong-down);
+
+      > .__info {
+        border-color: var(--color-accent-strong-down);
       }
     }
   }

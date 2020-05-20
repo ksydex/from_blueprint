@@ -2,14 +2,24 @@
   <div>
     <VContainer :default-header="false"
                 v-if="house">
-      <template v-slot:title>
-        <VText class="__name"
-               type="h3">
-          {{house.name}}
-        </VText>
-      </template>
       <div class="house">
         <div class="__info">
+          <VText class="__name"
+                 type="h3">
+            {{house.name}}
+          </VText>
+
+          <div class="__chips">
+            <div v-if="house.isNew"
+                 class="__chip __new">
+              Новинка
+            </div>
+            <div v-if="house.isCheap"
+                 class="__chip __cheap">
+              Выгодно
+            </div>
+          </div>
+
           <VText color="var(--color-base-strong-down)"
                  class="__desc"
                  type="p">{{house.description}}
@@ -26,10 +36,16 @@
               <span>- {{param.value}}</span>
             </VText>
           </div>
+          <VText type="title"
+                 weight="500"
+                 style="margin-bottom: var(--indent-2)"
+                 color="var(--color-accent-strong)">Цена: ${{house.price}} USD
+          </VText>
           <div class="__buy">
             <ButtonAddToCart w100
                              :id="house.id"/>
             <VButton color="var(--color-base-weak)"
+                     hover-color="var(--color-faint-weak-up)"
                      text-color="var(--color-accent-strong)"
                      w100>Купить в один клик
             </VButton>
@@ -87,6 +103,25 @@
     }
 
     .__info {
+      .__chips {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30px, max-content));
+        grid-gap: var(--indent-2);
+
+        .__chip {
+          padding: var(--indent-1) var(--indent-2);
+          color: var(--color-base-weak);
+          margin-bottom: var(--indent-1);
+        }
+
+        .__new {
+          background: var(--color-error-strong);
+        }
+
+        .__cheap {
+          background: var(--color-success-strong);
+        }
+      }
 
       .__name {
         margin-bottom: var(--indent-1);
@@ -97,7 +132,7 @@
       }
 
       .__params {
-        margin-bottom: var(--indent-4);
+        margin-bottom: var(--indent-3);
 
         .__param {
         }

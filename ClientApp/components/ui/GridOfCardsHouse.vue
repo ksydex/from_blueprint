@@ -26,7 +26,7 @@
 <style scoped>
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(200px, max-content));
     gap: var(--indent-3);
   }

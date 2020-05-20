@@ -1,10 +1,13 @@
 <template>
   <div class="main">
-    <div class="indent"></div>
-    <VNav/>
-    <main>
-      <nuxt/>
-    </main>
+    <div>
+      <div class="indent"></div>
+      <VNav/>
+      <main>
+        <nuxt/>
+      </main>
+    </div>
+
 
     <VFooter/>
   </div>
@@ -24,9 +27,12 @@
 
 <style scoped>
   .main {
-
+    min-height: 100vh;
     overflow-x: hidden;
     overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   main {

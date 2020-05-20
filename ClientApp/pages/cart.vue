@@ -74,7 +74,7 @@
             <div>
               <VText
                 weight="500"
-                type="caption">Размер скидки: ${{total * sale}}
+                type="caption">Размер скидки: ${{Math.floor(total * sale)}}
               </VText>
               <VText class="__price"
                      type="subtitle"
@@ -128,7 +128,8 @@
     },
     async asyncData(ctx) {
       const ids = ctx.store.getters['cart/GET_IDS']
-      const housesByIds = await ctx.$api.House.getByIds(ids)
+      let housesByIds = await ctx.$api.House.getByIds(ids)
+      housesByIds = Array.isArray(housesByIds) ? housesByIds : [housesByIds]
       return {
         housesData: housesByIds
       }
@@ -188,7 +189,7 @@
         }
 
         .__image {
-          width: 150px;
+          width: 200px;
           height: 100px;
           background-size: cover;
           background-position: center center;
@@ -203,7 +204,7 @@
           width: 100%;
           display: flex;
           justify-content: space-between;
-          padding: var(--indent-2);
+          padding: var(--indent-3);
           align-items: center;
           flex-wrap: wrap;
 
