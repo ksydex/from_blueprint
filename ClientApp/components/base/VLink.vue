@@ -17,6 +17,7 @@
 <style scoped>
   .link {
     text-decoration: none;
+    color: var(--color-accent-strong);
   }
 
   .link:hover, .link:active, .link:focus {

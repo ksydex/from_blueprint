@@ -1,82 +1,57 @@
 <template>
   <VContainer>
     <template v-slot:title>Корзина</template>
+    <div v-if="houses.length ===0"
+         class="cart-empty">
+      <VText type="h3"
+             align="center"
+             color="var(--color-base-strong-down)">Ваша корзина пуста!
+      </VText>
+      <VButton to="/houses">Перейти в магазин</VButton>
+    </div>
+    <div v-else
+         class="cart">
+      <div class="__items"
+      >
+        <div
+          class="__item"
+          v-for="house in houses"
+          :key="house.id">
+          <div :style="{backgroundImage: `url('${house.image}')`}"
+               class="__image"></div>
+          <div class="__inner">
+            <div class="__item2 __info">
+              <VText weight="600"
+                     class="__name">{{house.name}}
+              </VText>
+              <VText color="var(--color-base-strong-down)">{{`${house.area} кв.м, ${house.floors}
+                этажа(-ей)`}}
+              </VText>
+            </div>
+            <div class="__price">
+              <VText weight="600"
+                     class="__item2">{{`$${house.price} USD`}}
+              </VText>
+              <VText @click="removeFromCart(house.id)"
+                     class="__remove">Убрать
+              </VText>
+            </div>
+          </div>
+        </div>
 
-    <div class="cart">
-      <div class="__items">
-        <div class="__item">
-          <div :style="{backgroundImage: `url('/images/home1.jpg')`}"
-               class="__image"></div>
-          <div class="__inner">
-            <div class="__item2 __info">
-              <VText weight="600"
-                     class="__name">Дом огромный
-              </VText>
-              <VText color="var(--color-base-strong-down)">Сколько то м3, 5 этажей</VText>
-            </div>
-            <div class="__price">
-              <VText class="__item2">$25.000</VText>
-              <VInput value="1"
-                      class="__item2 __amount"></VInput>
-              <VText class="__item2"
-                     weight="600">$50.000
-              </VText>
-            </div>
-            <VText class="__remove">Убрать</VText>
-          </div>
-        </div>
-        <div class="__item">
-          <div :style="{backgroundImage: `url('/images/home1.jpg')`}"
-               class="__image"></div>
-          <div class="__inner">
-            <div class="__item2 __info">
-              <VText weight="600"
-                     class="__name">Дом огромный
-              </VText>
-              <VText color="var(--color-base-strong-down)">Сколько то м3, 5 этажей</VText>
-            </div>
-            <div class="__price">
-              <VText class="__item2">$25.000</VText>
-              <VInput value="1"
-                      class="__item2 __amount"></VInput>
-              <VText class="__item2"
-                     weight="600">$50.000
-              </VText>
-            </div>
-            <VText class="__remove">Убрать</VText>
-          </div>
-        </div>
-        <div class="__item">
-          <div :style="{backgroundImage: `url('/images/home1.jpg')`}"
-               class="__image"></div>
-          <div class="__inner">
-            <div class="__item2 __info">
-              <VText weight="600"
-                     class="__name">Дом огромный
-              </VText>
-              <VText color="var(--color-base-strong-down)">Сколько то м3, 5 этажей</VText>
-            </div>
-            <div class="__price">
-              <VText class="__item2">$25.000</VText>
-              <VInput value="1"
-                      class="__item2 __amount"></VInput>
-              <VText class="__item2"
-                     weight="600">$50.000
-              </VText>
-            </div>
-            <VText class="__remove">Убрать</VText>
-          </div>
-        </div>
       </div>
-      <div class="__total">
+      <div
+        class="__total">
         <VText type="title">Итог</VText>
         <hr class="__divider"/>
         <div class="__info">
           <VText
-            v-for="(item, idx) in info"
+            v-for="item in info"
             :key="item"
-            :class="{__item: idx !== info.length-1}"
-            type="p">{{item}}
+            type="p"
+            :line-height="1.4"
+          >
+            {{item}}
           </VText>
           <div class="__promo">
             <div class="__line"></div>
@@ -99,12 +74,12 @@
             <div>
               <VText
                 weight="500"
-                type="caption">Размер скидки: ${{total * sale/100}}
+                type="caption">Размер скидки: ${{total * sale}}
               </VText>
               <VText class="__price"
                      type="subtitle"
                      weight="600"
-                     color="var(--color-accent-strong)">Итого: ${{total * (1 - sale/100)}}
+                     color="var(--color-accent-strong)">Итого: ${{total * (1 - sale)}}
               </VText>
             </div>
             <VButton>Заказать</VButton>
@@ -119,33 +94,64 @@
   export default {
     data() {
       return {
-        sale: 10,
+        sale: 0.1,
         housesData: null
       }
     },
+    methods: {
+      removeFromCart(id) {
+        this.$store.dispatch('cart/removeId', id)
+      }
+    },
     computed: {
-      ids() {
-        return this.$store.getters['cart/GET_IDS']
+      houses() {
+        if (this.housesData) {
+          const ids = this.$store.getters['cart/GET_IDS']
+          return ids.map(id => this.housesData.filter(h => h.id === id)[0])
+        }
+        return []
       },
       total() {
-        return this.ids.length * 23.2
+        let price = 0
+        this.houses.forEach(h => {
+          price += h.price
+        })
+        return price
       },
       info() {
         return [
-          `Всего позиций: ${this.ids.length}`,
+          `Всего позиций: ${this.houses.length}`,
           `Стоимость: $${this.total}`,
-          `Скидка: ${this.sale}%`
+          `Скидка: ${this.sale * 100}%`
         ]
       }
     },
-    asyncData(ctx) {
-      console.log(ctx)
+    async asyncData(ctx) {
+      const ids = ctx.store.getters['cart/GET_IDS']
+      const housesByIds = await ctx.$api.House.getByIds(ids)
+      return {
+        housesData: housesByIds
+      }
     }
   }
 </script>
 
 <style scoped
        lang="scss">
+
+  .cart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: var(--indent-4);
+    background: var(--color-faint-weak);
+
+    button {
+      margin-top: var(--indent-2);
+    }
+  }
+
   .cart {
     display: grid;
     grid-template-columns: 65% auto;
@@ -211,6 +217,8 @@
           }
 
           .__info {
+            line-height: 1.3;
+
             .__name {
               margin-bottom: var(--indent-1);
             }
@@ -218,19 +226,17 @@
 
           .__price {
             display: flex;
-            justify-content: space-around;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-end;
+
+            > .__item2 {
+              margin-bottom: var(--indent-1);
+            }
 
             @include for-size(mobile) {
               width: 100%;
+              flex-direction: row;
               justify-content: space-between;
-            }
-
-            .__amount {
-              width: 30px;
-              display: flex;
-              align-items: center;
-              margin: 0 var(--indent-2);
             }
           }
 
@@ -260,10 +266,6 @@
       .__info {
         margin-bottom: var(--indent-2);
         color: var(--color-base-strong-down);
-
-        .__item {
-          margin-bottom: var(--indent-1);
-        }
 
         .__item:last-of-type {
           margin-bottom: 0 !important;

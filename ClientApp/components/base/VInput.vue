@@ -5,7 +5,7 @@
     </VText>
     <div class="container">
       <input
-        :id="'input-' + this.$attrs.placeholder || 'input'"
+        :id="'input-' + (this.$attrs.placeholder || Math.floor(Math.random()*Math.random()*100))"
         v-bind="$attrs"
         :type="type"
         class="input"

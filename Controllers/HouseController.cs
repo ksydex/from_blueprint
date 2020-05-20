@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using from_blueprint.Database;
 using from_blueprint.Models;
+using from_blueprint.Pages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace from_blueprint.Controllers
@@ -34,6 +35,16 @@ namespace from_blueprint.Controllers
       {
         return NotFound();
       }
+    }
+
+    public ActionResult<IEnumerable<object>> Filter(int limit = 5, string orderBy = "Price", bool descending = true)
+    {
+      if (descending == false)
+      {
+        return Ok(_db.Houses.OrderByDescending(h => h.Price).Take(limit).ToList().Select(h=> h.ToDto()));
+      }
+
+      return Ok(_db.Houses.OrderBy(h => h.Price).Take(limit).ToList().Select(h=> h.ToDto()));
     }
   }
 }

@@ -14,12 +14,12 @@ namespace from_blueprint.Models
     
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
+    public string Name { get; set; }
     public float Price { get; set; }
     public string Description { get; set; }
     
     public virtual Image Image { get; set; }
-
-    [JsonIgnore]
+    
     public DateTime CreatedDate { get; set; }
   }
 }

@@ -1,7 +1,9 @@
 <template>
   <button @click="handleClick"
           :style="{
-    padding: indents[size]
+    padding: indents[size],
+    background: color ? color : null,
+    width: w100 ? '100%' : null
   }"
           class="button">
     <VText :color="textColor"
@@ -14,6 +16,7 @@
 <script>
   export default {
     props: {
+      w100: Boolean,
       to: String,
       textType: {
         type: String,

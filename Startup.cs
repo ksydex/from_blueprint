@@ -66,11 +66,11 @@ namespace from_blueprint
         endpoints.MapRazorPages();
       });
 
-      // app.UseSpa(spa =>
-      // {
-      //   spa.Options.SourcePath = "ClientApp";
-      //   spa.UseProxyToSpaDevelopmentServer("http://localhost:3000/");
-      // });
+      app.UseSpa(spa =>
+      {
+        spa.Options.SourcePath = "ClientApp";
+        spa.UseProxyToSpaDevelopmentServer("http://localhost:3000/");
+      });
     }
   }
 }

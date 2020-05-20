@@ -7,8 +7,8 @@ export const state = () => ({
     },
     {
       id: 1,
-      title: 'Строительство',
-      to: '/building'
+      title: 'Предложения',
+      to: '/houses'
     },
     {
       id: 2,

@@ -1,16 +1,20 @@
 <template>
-  <div class="card"
-       :style="{
+  <div
+    class="card"
+    :style="{
     background
   }">
-    <div :style="{
+    <div @click="pushToRoute"
+         :style="{
       'background-image': `url('${house.image}')`
     }"
          class="__image">
     </div>
     <div class="__info">
-      <VText class="__name"
-             type="p">{{house.name}}, <span style="color: var(--color-base-strong-down)">{{house.country}}</span>
+      <VText
+        @click="pushToRoute"
+        class="__name"
+        type="p">{{house.name}}
       </VText>
       <VText
         class="__meta"
@@ -24,31 +28,21 @@
           {{info.price}}
         </VText>
       </div>
-      <VButton @click="addToCart"
-               v-if="!isInCart"
-               size="small"
-               class="__button">В корзину
-      </VButton>
-      <VButton @click="removeFromCart"
-               v-else-if="isInCart"
-               text-color="var(--color-accent-strong)"
-               class="__button-in-cart"
-               size="small">
-        <svg width="18"
-             height="14"
-             fill="none"
-             xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 11.2L1.8 7 .4 8.4 6 14 18 2 16.6.6 6 11.2z"
-          />
-        </svg>
-        В корзине
-      </VButton>
+      <ButtonAddToCart :id="house.id"/>
     </div>
   </div>
 </template>
 
 <script>
+  import ButtonAddToCart from './ButtonAddToCart'
+
   export default {
+    components: { ButtonAddToCart },
+    methods: {
+      pushToRoute() {
+        this.$router.push('/houses/' + this.house.id)
+      }
+    },
     props: {
       background: {
         type: String,
@@ -59,20 +53,11 @@
         default: () => ({
           id: 1,
           name: 'Офисное здание',
-          country: 'Румыния',
           price: 15000,
           area: 300,
           floors: 4,
           image: '/images/home2.jpg'
         })
-      }
-    },
-    methods: {
-      addToCart() {
-        this.$store.dispatch('cart/addId', this.house.id)
-      },
-      removeFromCart() {
-        this.$store.dispatch('cart/removeId', this.house.id)
       }
     },
     computed: {
@@ -92,6 +77,8 @@
 <style lang="scss"
        scoped>
   .card {
+    cursor: pointer;
+
     .__image {
       position: relative;
       overflow: hidden;
@@ -102,7 +89,7 @@
     }
 
     &:hover {
-      box-shadow: 0 10px 50px -25px var(--color-base-strong-down);
+      box-shadow: 0 10px 30px -25px var(--color-base-strong-down);
     }
 
     .__info {
@@ -114,28 +101,6 @@
 
       .__price {
         margin-bottom: var(--indent-2);
-      }
-
-      .__button-in-cart {
-        background: var(--color-faint-weak);
-        border-color: var(--color-faint-weak);
-
-        div p {
-          color: var(--color-accent-strong) !important;
-        }
-
-        &:hover {
-          background: var(--color-faint-weak-up);
-          border-color: var(--color-faint-weak-up);
-        }
-
-        svg {
-          margin-right: var(--indent-1);
-
-          path {
-            fill: var(--color-accent-strong);
-          }
-        }
       }
     }
   }

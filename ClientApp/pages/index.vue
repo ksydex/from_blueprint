@@ -131,7 +131,7 @@
         Наши дома по скидке
       </VText>
       <div class="__content">
-        <GridOfCardsHouse/>
+        <GridOfCardsHouse :houses="housesOnSale"/>
       </div>
     </div>
   </div>
@@ -144,6 +144,7 @@
     components: { GridOfCardsHouse, EffectGrid, CardHouse },
     data() {
       return {
+        housesOnSale: [],
         stages: [
           {
             id: 0,
@@ -161,6 +162,12 @@
             desc: 'Убеждаемся в качестве построенного здания чтобы далее выдать его своему владельцу.'
           }
         ]
+      }
+    },
+    async asyncData(ctx) {
+      const houses = await ctx.$api.House.getByIds([2, 4, 3])
+      return {
+        housesOnSale: houses
       }
     }
   }

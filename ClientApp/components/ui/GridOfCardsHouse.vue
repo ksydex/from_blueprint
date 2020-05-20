@@ -1,9 +1,10 @@
 <template>
-  <div class="grid">
-    <CardHouse></CardHouse>
-    <CardHouse></CardHouse>
-    <CardHouse></CardHouse>
-    <CardHouse></CardHouse>
+  <div class="grid"
+       v-if="houses.length > 0">
+    <CardHouse v-for="house in houses"
+               :key="house.id"
+               :background="cardsBackground"
+               :house="house"/>
   </div>
 </template>
 
@@ -11,6 +12,13 @@
   import CardHouse from './CardHouse'
 
   export default {
+    props: {
+      houses: {
+        type: Array,
+        default: () => []
+      },
+      cardsBackground: String
+    },
     components: { CardHouse }
   }
 </script>

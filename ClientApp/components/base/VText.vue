@@ -5,12 +5,13 @@
       color: String,
       weight: String,
       align: String,
-      transform: String
+      transform: String,
+      lineHeight: Number
     },
     render(h) {
       let type
       if (!this.type) {
-        console.warn('Type wasn\'t set in <Text /> component; Setting "p" type.')
+        // console.warn('Type wasn\'t set in <Text /> component; Setting "p" type.')
         type = 'p'
       } else type = this.type
 
@@ -26,9 +27,13 @@
       if (this.weight) style += 'font-weight: ' + this.weight + ';'
       if (this.align) style += 'text-align: ' + this.align + ';'
       if (this.transform) style += 'text-transform: ' + this.transform + ';'
+      if (this.lineHeight) style += 'line-height: ' + this.lineHeight + ';'
 
-
-      return h('div', {}, [h(newType.tag, {
+      return h('div', {
+        on: {
+          click: () => this.$emit('click')
+        }
+      }, [h(newType.tag, {
         attrs: {
           ...this.$attrs,
           class: newType.class,

@@ -34,7 +34,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/global.js'
+    '~/plugins/global.js',
+    '~/plugins/api.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -59,7 +60,9 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: 'https://localhost:5001/api/'
+  },
   /*
   ** Build configuration
   */

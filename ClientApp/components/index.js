@@ -8,6 +8,7 @@ export { default as VInput } from './base/VInput'
 export { default as CardHouse } from './ui/CardHouse'
 export { default as VNav } from './base/VNav/'
 export { default as GridOfCardsHouse } from './ui/GridOfCardsHouse'
+export { default as ButtonAddToCart } from './ui/ButtonAddToCart'
 
 export { default as EffectGrid } from './EffectGrid'
 
