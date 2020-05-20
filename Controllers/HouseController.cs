@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace from_blueprint.Controllers
 {
-  public class HouseController: ControllerBase
+  public class HouseController : ControllerBase
   {
     private ApplicationContext _db;
 
@@ -18,20 +19,21 @@ namespace from_blueprint.Controllers
     }
 
     [HttpGet]
-    public ActionResult<object> Index(int? id)
+    public ActionResult<object> Index(int[] id)
     {
-      if (id != null)
+      if (id.Length == 0) return Ok(_db.Houses.ToList().Select(h => h.ToDto()));
+      try
       {
-        try
-        {
-          return _db.Houses.Single(h => h.Id == id);
-        }
-        catch
-        {
-          return NotFound();
-        }
+        return Ok(
+          id.Length > 1
+            ? _db.Houses.Where(h => id.Contains(h.Id)).ToList().Select(h => h.ToDto())
+            : _db.Houses.Single(h => h.Id == id[0]).ToDto()
+        );
       }
-      else return _db.Houses.ToList();
+      catch
+      {
+        return NotFound();
+      }
     }
   }
 }
